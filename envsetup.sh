@@ -1295,6 +1295,74 @@ function godir () {
     \cd $T/$pathname
 }
 
+function aospremote()
+{
+    git remote rm aosp 2> /dev/null
+    if [ ! -d .git ]
+    then
+        echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
+    fi
+    PROJECT=`pwd -P | sed s#$ANDROID_BUILD_TOP/##g`
+    if (echo $PROJECT | grep -qv "^device")
+    then
+        PFX="platform/"
+    fi
+    git remote add aosp https://android.googlesource.com/$PFX$PROJECT
+    git fetch aosp
+    echo "Remote 'aosp' created"
+}
+
+function cafremote()
+{
+    git remote rm caf 2> /dev/null
+    if [ ! -d .git ]
+    then
+        echo ".git directory not found. Please run this from the root directory of the CodeAurora repository you wish to set up."
+    fi
+    PROJECT=`pwd -P | sed s#$ANDROID_BUILD_TOP/##g`
+    if (echo $PROJECT | grep -qv "^device")
+    then
+        PFX="platform/"
+    fi
+    git remote add caf git://codeaurora.org/$PFX$PROJECT
+    git fetch caf
+    echo "Remote 'caf' created"
+}
+
+function cmremote()
+{
+    git remote rm cm 2> /dev/null
+    if [ ! -d .git ]
+    then
+        echo ".git directory not found. Please run this from the root directory of the CyanogenMod repository you wish to set up."
+    fi
+    PROJECT=`pwd -P | sed s#$ANDROID_BUILD_TOP/##g | sed s#/#_#g`
+    if (echo $PROJECT | grep -qv "^device")
+    then
+        PFX="android_"
+    fi
+    git remote add cm git://github.com/CyanogenMod/$PFX$PROJECT.git
+    git fetch cm
+    echo "Remote 'cm' created"
+}
+
+function linaroremote()
+{
+    git remote rm linaro 2> /dev/null
+    if [ ! -d .git ]
+    then
+        echo ".git directory not found. Please run this from the root directory of the Linaro repository you wish to set up."
+    fi
+    PROJECT=`pwd -P | sed s#$ANDROID_BUILD_TOP/##g`
+    if (echo $PROJECT | grep -qv "^device")
+    then
+        PFX="platform/"
+    fi
+    git remote add linaro git://android.git.linaro.org/$PFX$PROJECT
+    git fetch linaro
+    echo "Remote 'linaro' created"
+}
+
 # Force JAVA_HOME to point to java 1.6 if it isn't already set
 function set_java_home() {
     if [ ! "$JAVA_HOME" ]; then
