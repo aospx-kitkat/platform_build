@@ -108,3 +108,4 @@ PRODUCT_PACKAGES += \
 
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/superuser.mk)
