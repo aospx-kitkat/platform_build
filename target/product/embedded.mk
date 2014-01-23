@@ -21,6 +21,7 @@ PRODUCT_PACKAGES += \
     adb \
     adbd \
     bootanimation \
+    busybox \
     debuggerd \
     dumpstate \
     dumpsys \
