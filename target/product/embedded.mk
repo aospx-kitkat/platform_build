@@ -66,6 +66,7 @@ PRODUCT_PACKAGES += \
     service \
     servicemanager \
     surfaceflinger \
+    sysinit \
     toolbox
 
 # SELinux packages
