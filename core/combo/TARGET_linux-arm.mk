@@ -109,6 +109,12 @@ TARGET_GLOBAL_CFLAGS += \
 			-include $(android_config_h) \
 			-I $(dir $(android_config_h))
 
+# Globally disable some warnings
+TARGET_GLOBAL_CFLAGS += \
+			-Wno-unused-parameter \
+			-Wno-unused-value \
+			-Wno-unused-function
+
 # This warning causes dalvik not to build with gcc 4.6+ and -Werror.
 # We cannot turn it off blindly since the option is not available
 # in gcc-4.4.x.  We also want to disable sincos optimization globally
